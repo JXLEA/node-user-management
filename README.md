@@ -1,2 +1,2 @@
 # node-user-management
-Node js lookup project to be more familiar with Node, architecture, application componets and theis interuction. This is simple user managenmt system with 3 layered architecture Contoller - Service - Repository(pattern implementation) 
+Node js lookup project to be more familiar with Node, its application architecture, application componets and their interuction. This is simple user managenmt system with 3 layered architecture Contoller - Service - Repository(pattern implementation) data layer implemented using ORM - sequalize to have a practive with it also, and its fully headless system e.g. no front-end realisation.
