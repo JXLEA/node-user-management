@@ -1,0 +1,25 @@
+{
+  "name": "user-management",
+  "version": "1.0.0",
+  "description": "Node js lookup project to be more familiar with Node, its application architecture, application componets and their interuction. This is simple user managenmt system with 3 layered architecture Contoller - Service - Repository(pattern implementation) data layer implemented using ORM - sequalize to have a practive with it also, and its fully headless system e.g. no front-end realisation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JXLEA/node-user-management.git"
+  },
+  "keywords": [
+    "user-management-app"
+  ],
+  "author": "jxlea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JXLEA/node-user-management/issues"
+  },
+  "homepage": "https://github.com/JXLEA/node-user-management#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
