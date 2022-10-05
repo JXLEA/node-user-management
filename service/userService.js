@@ -1,25 +1,34 @@
 const UserRepository = require('../repository/userRepository')
 const userRepository = new UserRepository()
+const UserCreationError = require("../error/UserCreationError")
+const UserNotFoundError = require("../error/UserNotFoundError")
 
 module.exports = class UserService {
-    
-    findAll() {
-        return userRepository.findAll();
+
+    async findAll() {
+        return await userRepository.findAll();
     }
 
-    findBy(condition) {
-        return userRepository.findAllBy(condition)
+    async findById(id) {
+        let user = await userRepository.findById(id)
+        if (!user) {
+            throw new UserNotFoundError(`User with id ${id} not found`)
+        }
     }
 
-    create(user) {
-        return userRepository.create(user)
-    }
-    
-    update(user) {
-        return userRepository.update(user);
+    async create(user) {
+        try {
+            return await userRepository.create(user);
+        } catch (error) {
+            throw new UserCreationError(`Error happened during user creation`, 404, false, error.message)
+        }
     }
 
-    deleteById(id) {
-        return userRepository.deleteById(id)
+    async update(user) {
+        return await userRepository.update(user);
+    }
+
+    async deleteById(id) {
+        return await userRepository.deleteById(id)
     }
 }

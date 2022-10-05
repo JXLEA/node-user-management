@@ -6,10 +6,10 @@ module.exports = class UserRepository {
         return userModel.findAll()
     }
 
-    findAllBy(condition) {
-        return userModel.findAll({
+    findById(id) {
+        return userModel.findOne({
             where: {
-                [condition.key]: [condition.value]
+                id: id
             }
         })
     }

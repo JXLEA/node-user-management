@@ -1,4 +1,4 @@
-let { Sequelize, Model, DataType} = require('sequelize')
+let { Model, DataTypes} = require('sequelize')
 const sequelize = require('../util/connection')
 
 class Person extends Model {
@@ -7,22 +7,23 @@ class Person extends Model {
 module.exports = Person.init(
     {
         id: {
-            type: Sequelize.NUMBER,
-            primaryKey: true
+            type: DataTypes.UUIDV1,
+            primaryKey: true,
+            autoIncrement: true
         },
         firstName: {
             field: 'first_name',
-            type: Sequelize.TEXT,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         lastName: {
             field: 'last_name',
-            type: Sequelize.TEXT,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         age: {
             field: 'age',
-            type: Sequelize.NUMBER,
+            type: DataTypes.NUMBER,
             allowNull: false,
         }
     },
