@@ -2,6 +2,7 @@ const UserRepository = require('../repository/userRepository')
 const userRepository = new UserRepository()
 const UserCreationError = require("../error/UserCreationError")
 const UserNotFoundError = require("../error/UserNotFoundError")
+const UserManagementError = require("../error/UserManagementAppError");
 
 module.exports = class UserService {
 
@@ -25,10 +26,18 @@ module.exports = class UserService {
     }
 
     async update(user) {
-        return await userRepository.update(user);
+        try {
+            return await userRepository.update(user);
+        } catch (error) {
+            throw new UserManagementError(`Cannot update user with id: ${user.id}`)
+        }
     }
 
     async deleteById(id) {
-        return await userRepository.deleteById(id)
+        try {
+            return await userRepository.deleteById(id)
+        } catch (error) {
+            throw new UserManagementError(`Cannot delete user with id: ${id}`, 500, false, error.message)
+        }
     }
 }

@@ -1,5 +1,6 @@
-let { Model, DataTypes} = require('sequelize')
+let {Model, DataTypes} = require('sequelize')
 const sequelize = require('../util/connection')
+const {Note} = require('./noteModel')
 
 class Person extends Model {
 }
@@ -32,4 +33,6 @@ module.exports = Person.init(
         modelName: 'persons',
         timestamps: false
     }
-)
+).hasMany(Note, {
+    onDelete: 'CASCADE'
+})

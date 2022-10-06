@@ -9,9 +9,9 @@ router.route('/')
     .get(userController.getAll)
     .post(userController.create)
     .put(userController.update)
-    .delete(userController.delete)
 
 router.route('/:id')
     .get(userController.getById)
+    .delete(userController.delete)
 
 module.exports = router

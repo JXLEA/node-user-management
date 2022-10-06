@@ -19,7 +19,11 @@ module.exports = class UserRepository {
     }
 
     update(user) {
-        return userModel.update(user)
+        return userModel.update(user, {
+            where: {
+                id: user.id
+            }
+        })
     }
 
     deleteById(id) {

@@ -32,16 +32,25 @@ module.exports = class UserController {
         }
     }
 
-    update(req, res) {
-        let user = req.body
-        userService.update(user)
-        res.status(201)
-        res.send()
+    async update(req, res) {
+        try {
+            let user = req.body
+            await userService.update(user)
+            res.status(201)
+            res.send({"message": `User updated successfully`})
+        } catch (userManagementError) {
+            res.send(userManagementError)
+        }
     }
 
-    delete(req, res) {
-        let id = req.query[0].value
-        let result = userService.deleteById(id)
-        res.json(204, result)
+    async delete(req, res) {
+        try {
+            let id = req.params.id
+            let result = userService.deleteById(id)
+            res.setHeader(204, {"message" : " User deleted successfully"})
+                .send(result)
+        } catch (userManagementError) {
+            res.send(userManagementError)
+        }
     }
 }
