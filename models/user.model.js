@@ -1,6 +1,6 @@
-let {Model, DataTypes} = require('sequelize')
-const sequelize = require('../util/connection')
-const Note = require('./noteModel')
+const { Model, DataTypes } = require('sequelize')
+const { sequelize } = require('../utils')
+const Note = require('./note.model')
 
 class Person extends Model {
 }
@@ -33,10 +33,10 @@ Person.init(
         modelName: 'persons',
         timestamps: false
     }
-).hasMany(Note, {
-    foreignKey: {
-        name: 'author',
-    },
+)
+
+Person.hasMany(Note, {
+    foreignKey: 'author',
     onDelete: 'CASCADE'
 })
 

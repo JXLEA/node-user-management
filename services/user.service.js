@@ -1,10 +1,9 @@
-const UserRepository = require('../repository/userRepository')
-const userRepository = new UserRepository()
-const UserCreationError = require("../error/UserCreationError")
-const UserNotFoundError = require("../error/UserNotFoundError")
-const UserManagementError = require("../error/UserManagementAppError");
+const { userRepository } = require('../repositories')
+const { UserCreationError } = require("../exceptions")
+const { UserNotFoundError } = require("../exceptions")
+const { UserManagementError} = require("../exceptions");
 
-module.exports = class UserService {
+class UserService {
 
     async findAll() {
         return await userRepository.findAll();
@@ -15,6 +14,7 @@ module.exports = class UserService {
         if (!user) {
             throw new UserNotFoundError(`User with id ${id} not found`)
         }
+        return user;
     }
 
     async create(user) {
@@ -41,3 +41,5 @@ module.exports = class UserService {
         }
     }
 }
+
+module.exports = new UserService()

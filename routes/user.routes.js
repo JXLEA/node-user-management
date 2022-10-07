@@ -1,10 +1,10 @@
-const express = require('express'),
-    router = express.Router(),
-    UserController = require('../controller/userController')
+const express = require('express')
+const { userController } = require('../controllers')
 
-const userController = new UserController()
+const router = express.Router()
 
 router.use(express.json())
+
 router.route('/')
     .get(userController.getAll)
     .post(userController.create)

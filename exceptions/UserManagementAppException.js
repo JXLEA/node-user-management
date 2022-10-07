@@ -1,4 +1,4 @@
-module.exports = class UserManagementError extends Error {
+class UserManagementError extends Error {
 
     constructor(name, status, isOperational, message) {
         super(message);
@@ -10,3 +10,5 @@ module.exports = class UserManagementError extends Error {
         Error.captureStackTrace(this)
     }
 }
+
+module.exports = UserManagementError

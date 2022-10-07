@@ -1,6 +1,6 @@
-const userModel = require('../model/userModel')
+const { userModel } = require('../models')
 
-module.exports = class UserRepository {
+class UserRepository {
 
     findAll() {
         return userModel.findAll()
@@ -34,3 +34,5 @@ module.exports = class UserRepository {
         })
     }
 }
+
+module.exports = new UserRepository()

@@ -1,6 +1,6 @@
-const UserManagementAppError = require('./UserManagementAppError')
+const UserManagementAppError = require('./UserManagementAppException')
 
-module.exports = class UserNotFoundError extends UserManagementAppError {
+class UserNotFoundError extends UserManagementAppError {
 
     constructor(
         name,
@@ -11,3 +11,5 @@ module.exports = class UserNotFoundError extends UserManagementAppError {
         super(name, status, isOperational, message);
     }
 }
+
+module.exports = UserNotFoundError

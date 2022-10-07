@@ -1,18 +1,17 @@
-const UserService = require('../service/userService')
-const userService = new UserService()
+const { userService } = require('../services')
 
-module.exports = class UserController {
+class UserController {
 
     async getAll(req, res) {
         let result = await userService.findAll()
-        res.status(200).send(result)
+        res.status(200).json(result)
     }
 
     async getById(req, res) {
         try {
             let id = req.params.id
             let result = await userService.findById(id)
-            res.json(result)
+            res.status(200).json(result)
         } catch (userNotFoundError) {
             res.send(userNotFoundError)
         }
@@ -22,12 +21,7 @@ module.exports = class UserController {
         try {
             let user = req.body
             let result = await userService.create(user)
-            res.status(201)
-                .send(
-                    {
-                        "message": `User created successfully`,
-                        result
-                    })
+            res.status(201).json({"message": `User created successfully`, result})
         } catch (userCreationError) {
             res.send(userCreationError)
         }
@@ -37,8 +31,7 @@ module.exports = class UserController {
         try {
             let user = req.body
             await userService.update(user)
-            res.status(201)
-                .send({"message": `User updated successfully`})
+            res.status(200).json({"message": `User updated successfully`})
         } catch (userManagementError) {
             res.send(userManagementError)
         }
@@ -48,10 +41,11 @@ module.exports = class UserController {
         try {
             let id = req.params.id
             await userService.deleteById(id)
-            res.status(204)
-                .send({"message": " User deleted successfully"})
+            res.status(204).json({"message": " User deleted successfully"})
         } catch (userManagementError) {
             res.send(userManagementError)
         }
     }
 }
+
+module.exports = new UserController()
