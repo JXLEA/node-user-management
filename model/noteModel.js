@@ -1,11 +1,10 @@
 const {Model, DataTypes} = require('sequelize')
 const sequelize = require('../util/connection')
-const {Person} = require('./userModel')
 
 class Note extends Model {
 }
 
-module.exports = Note.init(
+Note.init(
     {
         id: {
             field: "id",
@@ -27,6 +26,7 @@ module.exports = Note.init(
         sequelize,
         modelName: 'notes',
         timestamps: false
-
     }
-).belongsTo(Person)
+)
+
+module.exports = Note;

@@ -1,11 +1,11 @@
 let {Model, DataTypes} = require('sequelize')
 const sequelize = require('../util/connection')
-const {Note} = require('./noteModel')
+const Note = require('./noteModel')
 
 class Person extends Model {
 }
 
-module.exports = Person.init(
+Person.init(
     {
         id: {
             type: DataTypes.UUIDV1,
@@ -34,5 +34,10 @@ module.exports = Person.init(
         timestamps: false
     }
 ).hasMany(Note, {
+    foreignKey: {
+        name: 'author',
+    },
     onDelete: 'CASCADE'
 })
+
+module.exports = Person

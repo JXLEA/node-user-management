@@ -3,8 +3,8 @@ const userService = new UserService()
 
 module.exports = class UserController {
 
-    getAll(req, res) {
-        let result = userService.findAll()
+    async getAll(req, res) {
+        let result = await userService.findAll()
         res.status(200).send(result)
     }
 
@@ -22,11 +22,12 @@ module.exports = class UserController {
         try {
             let user = req.body
             let result = await userService.create(user)
-            res.status(201);
-            res.send({
-                "message": `User created successfully`,
-                result
-            })
+            res.status(201)
+                .send(
+                    {
+                        "message": `User created successfully`,
+                        result
+                    })
         } catch (userCreationError) {
             res.send(userCreationError)
         }
@@ -37,7 +38,7 @@ module.exports = class UserController {
             let user = req.body
             await userService.update(user)
             res.status(201)
-            res.send({"message": `User updated successfully`})
+                .send({"message": `User updated successfully`})
         } catch (userManagementError) {
             res.send(userManagementError)
         }
@@ -46,9 +47,9 @@ module.exports = class UserController {
     async delete(req, res) {
         try {
             let id = req.params.id
-            let result = userService.deleteById(id)
-            res.setHeader(204, {"message" : " User deleted successfully"})
-                .send(result)
+            await userService.deleteById(id)
+            res.status(204)
+                .send({"message": " User deleted successfully"})
         } catch (userManagementError) {
             res.send(userManagementError)
         }
