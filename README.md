@@ -1,2 +1,2 @@
 # node-user-management
-Node.js lookup-project, the goal is be more familiar with Node, Applications on Node, their architecture, componets and interruction. This is simple user management system with 3 tire architecture. Contoller-Service-Repository(pattern implementation). Data layer has been implemented using Sequalize ORM. This make sense from practice perspective also it is a fully headless system e.g. no front-end implementation.
+Node.js practice project, the goal is to be familiar with Node, node application architecture, componets and interructions. This is simple user management system with 3 tire architecture. Contoller-Service-Repository(pattern implementation). Data layer has been implemented using Sequalize ORM.
